@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CubeMap : MonoBehaviour
 {
     CubeState cubeState;
+    DefineWords defineWords;
 
     public Transform up;
     public Transform down;
@@ -17,7 +18,7 @@ public class CubeMap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        defineWords = FindObjectOfType<DefineWords>();
     }
 
     // Update is called once per frame
@@ -46,6 +47,9 @@ public class CubeMap : MonoBehaviour
             if (face[i].name[0] == 'F')
             {
                 map.GetComponent<Image>().color = new Color(1, 0.5f, 0, 1);
+                // start implementation of cube map based on characters
+                // CubeWordsDictionary[]
+
             }
             if (face[i].name[0] == 'B')
             {

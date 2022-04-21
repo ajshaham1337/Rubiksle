@@ -20,6 +20,7 @@ public class Automate : MonoBehaviour
     {
         cubeState = FindObjectOfType<CubeState>();
         readCube = FindObjectOfType<ReadCube>();
+        // Shuffle(); // Starts the cube randomized... only turns it by one for some reason
     }
 
     // Update is called once per frame
@@ -38,7 +39,7 @@ public class Automate : MonoBehaviour
     public void Shuffle()
     {
         List<string> moves = new List<string>();
-        int shuffleLength = Random.Range(10, 30);
+        int shuffleLength = Random.Range(15, 30);
         for (int i = 0; i < shuffleLength; i++)
         {
             int randomMove = Random.Range(0, allMoves.Count);
