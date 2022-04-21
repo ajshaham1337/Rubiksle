@@ -38,12 +38,12 @@ public class DefineWords : MonoBehaviour
         CubeWordsDictionary.Add("L", sixWordsListForCube[4]);
         CubeWordsDictionary.Add("R", sixWordsListForCube[5]);
 
-        Debug.Log(CubeWordsDictionary);
+        // Debug.Log(CubeWordsDictionary);
     }
 
     public void StartGame()
     {
-        RandomizeCubeWords();
+        // RandomizeCubeWords();
         automate.Shuffle();
     }
 }
