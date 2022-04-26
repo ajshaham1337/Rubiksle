@@ -55681,6 +55681,32 @@ MonoBehaviour:
   - 
   - 
   - 
+  F: {fileID: 877803805}
+  B: {fileID: 189658957}
+  L: {fileID: 1335988456}
+  FR: {fileID: 234623274}
+  LB: {fileID: 360206424}
+  R: {fileID: 2141017674}
+  FL: {fileID: 528964576}
+  RB: {fileID: 710550435}
+  D: {fileID: 1197036304}
+  FD: {fileID: 342935450}
+  BD: {fileID: 1896831596}
+  BLD: {fileID: 125691556}
+  FRD: {fileID: 672855578}
+  LD: {fileID: 1638460618}
+  BRD: {fileID: 1823068208}
+  FLD: {fileID: 158730687}
+  RD: {fileID: 1203272882}
+  FU: {fileID: 1133827648}
+  BU: {fileID: 1819098682}
+  BRU: {fileID: 1553941399}
+  FRU: {fileID: 1413660481}
+  LU: {fileID: 382571440}
+  BLU: {fileID: 358606810}
+  FLU: {fileID: 2048269974}
+  RU: {fileID: 1684663801}
+  U: {fileID: 1257653768}
 --- !u!114 &409911446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58975,7 +59001,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 942302881}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
