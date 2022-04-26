@@ -10,7 +10,7 @@ public class DefineWords : MonoBehaviour
     public TextAsset dataFile;
     public string[] data;
     public string[] sixWordsListForCube;
-    Dictionary<string, string> CubeWordsDictionary = new Dictionary<string, string>();
+    public Dictionary<string, string> cubeWordsDictionary;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +20,7 @@ public class DefineWords : MonoBehaviour
 
         data = dataFile.text.Split('\n');
         sixWordsListForCube = new string[6] { "", "", "", "", "", "" };
+        cubeWordsDictionary = new Dictionary<string, string>();
     }
 
     public void RandomizeCubeWords()
@@ -31,14 +32,19 @@ public class DefineWords : MonoBehaviour
             sixWordsListForCube[i] = data[Random.Range(0, dataLength)];
         }
 
-        CubeWordsDictionary.Add("F", sixWordsListForCube[0]);
-        CubeWordsDictionary.Add("B", sixWordsListForCube[1]);
-        CubeWordsDictionary.Add("U", sixWordsListForCube[2]);
-        CubeWordsDictionary.Add("D", sixWordsListForCube[3]);
-        CubeWordsDictionary.Add("L", sixWordsListForCube[4]);
-        CubeWordsDictionary.Add("R", sixWordsListForCube[5]);
+        cubeWordsDictionary.Add("F", sixWordsListForCube[0]);
+        cubeWordsDictionary.Add("B", sixWordsListForCube[1]);
+        cubeWordsDictionary.Add("U", sixWordsListForCube[2]);
+        cubeWordsDictionary.Add("D", sixWordsListForCube[3]);
+        cubeWordsDictionary.Add("L", sixWordsListForCube[4]);
+        cubeWordsDictionary.Add("R", sixWordsListForCube[5]);
 
-        // Debug.Log(CubeWordsDictionary);
+        LoadLettersOntoCube();
+    }
+
+    public void LoadLettersOntoCube()
+    {
+        
     }
 
     public void StartGame()

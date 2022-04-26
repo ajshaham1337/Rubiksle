@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class CubeMap : MonoBehaviour
 {
@@ -15,11 +16,25 @@ public class CubeMap : MonoBehaviour
     public Transform front;
     public Transform back;
 
+    char[] wordArray0;
+    char[] wordArray1;
+    char[] wordArray2;
+    char[] wordArray3;
+    char[] wordArray4;
+    char[] wordArray5;
+
     // Start is called before the first frame update
     void Start()
     {
         defineWords = FindObjectOfType<DefineWords>();
         defineWords.RandomizeCubeWords();
+
+        wordArray0 = defineWords.sixWordsListForCube[0].ToCharArray();
+        wordArray1 = defineWords.sixWordsListForCube[1].ToCharArray();
+        wordArray2 = defineWords.sixWordsListForCube[2].ToCharArray();
+        wordArray3 = defineWords.sixWordsListForCube[3].ToCharArray();
+        wordArray4 = defineWords.sixWordsListForCube[4].ToCharArray();
+        wordArray5 = defineWords.sixWordsListForCube[5].ToCharArray();
     }
 
     // Update is called once per frame
@@ -42,61 +57,121 @@ public class CubeMap : MonoBehaviour
 
     void UpdateMap(List<GameObject> face, Transform side)
     {
+        char[] modifiedWordArray0 = new char[9];
+        char[] modifiedWordArray1 = new char[9];
+        char[] modifiedWordArray2 = new char[9];
+        char[] modifiedWordArray3 = new char[9];
+        char[] modifiedWordArray4 = new char[9];
+        char[] modifiedWordArray5 = new char[9];
+        
         int i = 0;
+        char c;
+
         foreach (Transform map in side)
         {
-            if (face[i].name[0] == 'F')
+            Text[] newText = map.gameObject.GetComponentsInChildren<Text>();
+            c = face[i].name[0];
+
+            if (c == 'F')
             {
-                // Debug.Log(map.gameObject.GetComponentsInChildren<Text>());
-                map.GetComponent<Image>().color = new Color(1, 0.5f, 0, 1);
-                Text[] newText = map.gameObject.GetComponentsInChildren<Text>();
-                Debug.Log(newText.Length);
-                int idx = int.Parse(map.name);
-                char[] wordArray0 = defineWords.sixWordsListForCube[0].ToCharArray();
                 newText[0].text = wordArray0[i].ToString();
+                modifiedWordArray0[i] = wordArray0[i];
             }
-            if (face[i].name[0] == 'B')
+            else if (c == 'B')
             {
-                map.GetComponent<Image>().color = Color.red;
-                Text[] newText = map.gameObject.GetComponentsInChildren<Text>();
-                Debug.Log(newText.Length);
-                int idx = int.Parse(map.name);
-                char[] wordArray1 = defineWords.sixWordsListForCube[1].ToCharArray();
                 newText[0].text = wordArray1[i].ToString();
+                modifiedWordArray1[i] = wordArray1[i];
             }
-            if (face[i].name[0] == 'U')
+            else if (c == 'U')
             {
-                map.GetComponent<Image>().color = Color.yellow;
-                Text[] newText = map.gameObject.GetComponentsInChildren<Text>();
-                int idx = int.Parse(map.name);
-                char[] wordArray2 = defineWords.sixWordsListForCube[2].ToCharArray();
                 newText[0].text = wordArray2[i].ToString();
+                modifiedWordArray2[i] = wordArray2[i];
             }
-            if (face[i].name[0] == 'D')
+            else if (c == 'D')
             {
-                map.GetComponent<Image>().color = Color.white;
-                Text[] newText = map.gameObject.GetComponentsInChildren<Text>();
-                int idx = int.Parse(map.name);
-                char[] wordArray3 = defineWords.sixWordsListForCube[3].ToCharArray();
                 newText[0].text = wordArray3[i].ToString();
+                modifiedWordArray3[i] = wordArray3[i];
             }
-            if (face[i].name[0] == 'L')
+            else if (c == 'L')
+            {
+                newText[0].text = wordArray4[i].ToString();
+                modifiedWordArray4[i] = wordArray4[i];
+            }
+            else if (c == 'R')
+            {
+                newText[0].text = wordArray5[i].ToString();
+                modifiedWordArray5[i] = wordArray5[i];
+            }
+
+            i++;
+
+            // Debug.Log($"Face: {face[i].name[0]}\tSide: {side}\tMap: {map}\ttext: {newText[0].text}");
+        }
+
+        i = 0;
+
+        foreach (Transform map in side)
+        {
+            Text[] newText = map.gameObject.GetComponentsInChildren<Text>();
+            c = face[i].name[0];
+            char[] arrCopy = new char[9];
+
+            if (c == 'F')
+            {
+                Array.Copy(modifiedWordArray0, arrCopy, 9);
+            }
+            else if (c == 'B')
+            {
+                Array.Copy(modifiedWordArray1, arrCopy, 9);
+            }
+            else if (c == 'U')
+            {
+                Array.Copy(modifiedWordArray2, arrCopy, 9);
+            }
+            else if (c == 'D')
+            {
+                Array.Copy(modifiedWordArray3, arrCopy, 9);
+            }
+            else if (c == 'L')
+            {
+                Array.Copy(modifiedWordArray4, arrCopy, 9);
+            }
+            else if (c == 'R')
+            {
+                Array.Copy(modifiedWordArray5, arrCopy, 9);
+            }
+
+            if (defineWords.cubeWordsDictionary[side.name[0].ToString()][i].ToString() == newText[0].text)
             {
                 map.GetComponent<Image>().color = Color.green;
-                Text[] newText = map.gameObject.GetComponentsInChildren<Text>();
-                int idx = int.Parse(map.name);
-                char[] wordArray4 = defineWords.sixWordsListForCube[4].ToCharArray();
-                newText[0].text = wordArray4[i].ToString();
             }
-            if (face[i].name[0] == 'R')
+            else if (defineWords.cubeWordsDictionary[side.name[0].ToString()].Contains(newText[0].text) &&
+                (NumberOfOccurencesInArr(arrCopy, newText[0].text[0]) <
+                 NumberOfOccurencesInArr(defineWords.cubeWordsDictionary[side.name[0].ToString()].ToCharArray(), newText[0].text[0])))
             {
-                map.GetComponent<Image>().color = Color.blue;
-                Text[] newText = map.gameObject.GetComponentsInChildren<Text>();
-                int idx = int.Parse(map.name);
-                char[] wordArray5 = defineWords.sixWordsListForCube[5].ToCharArray();
-                newText[0].text = wordArray5[i].ToString();
+                map.GetComponent<Image>().color = Color.yellow;
             }
+            else
+            {
+                map.GetComponent<Image>().color = Color.grey;
+            }
+
             i++;
         }
+    }
+
+    private int NumberOfOccurencesInArr(char[] charArr, char c)
+    {
+        int n = 0;
+
+        for (int i = 0; i < charArr.Length; i++)
+        {
+            if (charArr[i] == c)
+            {
+                n++;
+            }
+        }
+
+        return n;
     }
 }
