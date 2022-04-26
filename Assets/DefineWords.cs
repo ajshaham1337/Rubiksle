@@ -41,6 +41,14 @@ public class DefineWords : MonoBehaviour
     public Transform RU;
     public Transform U;
 
+    public Transform[] frontTransforms;
+    public Transform[] backTransforms;
+    public Transform[] upTransforms;
+    public Transform[] downTransforms;
+    public Transform[] leftTransforms;
+    public Transform[] rightTransforms;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -91,6 +99,7 @@ public class DefineWords : MonoBehaviour
         fdFront.text = sixWordsListForCube[0][7].ToString();
         Text frdFront = FRD.transform.Find("Front").GetChild(0).GetChild(0).GetComponent<Text>();
         frdFront.text = sixWordsListForCube[0][8].ToString();
+        frontTransforms = new Transform[9] {FLU, FU, FRU, FL, F, FR, FLD, FD, FRD};
         
         Text bruBack = BRU.transform.Find("Back").GetChild(0).GetChild(0).GetComponent<Text>();
         bruBack.text = sixWordsListForCube[1][0].ToString();
@@ -110,6 +119,7 @@ public class DefineWords : MonoBehaviour
         bdBack.text = sixWordsListForCube[1][7].ToString();
         Text brdBack = BRD.transform.Find("Back").GetChild(0).GetChild(0).GetComponent<Text>();
         brdBack.text = sixWordsListForCube[1][8].ToString();
+        backTransforms = new Transform[9] {BRU, BU, BLU, LB, B, RB, BLD, BD, BRD};
         
         Text bruUp = BRU.transform.Find("Up").GetChild(0).GetChild(0).GetComponent<Text>();
         bruUp.text = sixWordsListForCube[2][0].ToString();
@@ -129,6 +139,7 @@ public class DefineWords : MonoBehaviour
         ruUp.text = sixWordsListForCube[2][7].ToString();
         Text fluUp = FLU.transform.Find("Up").GetChild(0).GetChild(0).GetComponent<Text>();
         fluUp.text = sixWordsListForCube[2][8].ToString();
+        upTransforms = new Transform[9] {BRU, LU, FRU, BU, U, FU, BLU, RU, FLU};
 
         Text brdDown = BRD.transform.Find("Down").GetChild(0).GetChild(0).GetComponent<Text>();
         brdDown.text = sixWordsListForCube[3][0].ToString();
@@ -148,6 +159,7 @@ public class DefineWords : MonoBehaviour
         ldDown.text = sixWordsListForCube[3][7].ToString();
         Text frdDown = FRD.transform.Find("Down").GetChild(0).GetChild(0).GetComponent<Text>();
         frdDown.text = sixWordsListForCube[3][8].ToString();
+        downTransforms = new Transform[9] {BRD, RD, FLD, BD, D, FD, BLD, LD, FRD};
 
         Text fruLeft = FRU.transform.Find("Left").GetChild(0).GetChild(0).GetComponent<Text>();
         fruLeft.text = sixWordsListForCube[4][0].ToString();
@@ -167,6 +179,7 @@ public class DefineWords : MonoBehaviour
         ldLeft.text = sixWordsListForCube[4][7].ToString();
         Text bldLeft = BLD.transform.Find("Left").GetChild(0).GetChild(0).GetComponent<Text>();
         bldLeft.text = sixWordsListForCube[4][8].ToString();
+        leftTransforms = new Transform[9] {FRU, LU, BRU, FR, L, LB, FRD, LD, BLD};
 
         Text bluRight = BLU.transform.Find("Right").GetChild(0).GetChild(0).GetComponent<Text>();
         bluRight.text = sixWordsListForCube[5][0].ToString();
@@ -186,6 +199,7 @@ public class DefineWords : MonoBehaviour
         rdRight.text = sixWordsListForCube[5][7].ToString();
         Text fldRight = FLD.transform.Find("Right").GetChild(0).GetChild(0).GetComponent<Text>();
         fldRight.text = sixWordsListForCube[5][8].ToString();
+        rightTransforms = new Transform[9] {BLU, RU, FLU, RB, R, FL, BRD, RD, FLD};
     }
 
     public void StartGame()
