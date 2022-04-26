@@ -121,6 +121,7 @@ public class DefineWords : MonoBehaviour
         brdBack.text = sixWordsListForCube[1][8].ToString();
         backTransforms = new Transform[9] {BRU, BU, BLU, LB, B, RB, BLD, BD, BRD};
         
+        // may need to fix this for the cube? flip 0 w/ 6, 1 w/ 7, 2 w/ 8, 3 w/ 5
         Text bruUp = BRU.transform.Find("Up").GetChild(0).GetChild(0).GetComponent<Text>();
         bruUp.text = sixWordsListForCube[2][0].ToString();
         Text luUp = LU.transform.Find("Up").GetChild(0).GetChild(0).GetComponent<Text>();

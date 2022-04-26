@@ -162,7 +162,7 @@ public class CubeMap : MonoBehaviour
             }
             else if (defineWords.cubeWordsDictionary[side.name[0].ToString()].Contains(newText[0].text) &&
                 (NumberOfOccurencesInArr(arrCopy, newText[0].text[0]) <
-                 NumberOfOccurencesInArr(defineWords.cubeWordsDictionary[side.name[0].ToString()].ToCharArray(), newText[0].text[0])))
+                    NumberOfOccurencesInArr(defineWords.cubeWordsDictionary[side.name[0].ToString()].ToCharArray(), newText[0].text[0])))
             {
                 map.GetComponent<Image>().color = Color.yellow;
             }
@@ -171,6 +171,11 @@ public class CubeMap : MonoBehaviour
                 map.GetComponent<Image>().color = Color.grey;
             }
 
+            i++;
+        }
+
+        for (i = 0; i < 9; i++)
+        {
             // not fully working as intended yet...
             Renderer frontColor = defineWords.frontTransforms[i].transform.Find("Front").GetComponent<Renderer>();
             if (defineWords.cubeWordsDictionary[side.name[0].ToString()][i] == modifiedWordArray0[i])
@@ -256,8 +261,6 @@ public class CubeMap : MonoBehaviour
             {
                 rightColor.material.color = Color.grey;
             }
-
-            i++;
         }
     }
 }
