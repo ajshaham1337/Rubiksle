@@ -23,6 +23,10 @@ public class CubeMap : MonoBehaviour
     char[] wordArray4;
     char[] wordArray5;
 
+    public Material green;
+    public Material yellow;
+    public Material grey;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -174,93 +178,118 @@ public class CubeMap : MonoBehaviour
             i++;
         }
 
-        for (i = 0; i < 9; i++)
+        i = 0;
+        
+        // color works now, just bugged on rotations?
+        foreach (Transform map in side)
         {
-            // not fully working as intended yet...
-            Renderer frontColor = defineWords.frontTransforms[i].transform.Find("Front").GetComponent<Renderer>();
-            if (defineWords.cubeWordsDictionary[side.name[0].ToString()][i] == modifiedWordArray0[i])
+            Text[] newText = map.gameObject.GetComponentsInChildren<Text>();
+            c = face[i].name[0];
+
+            if (c == 'F')
             {
-                frontColor.material.color = Color.green;
-            } else if (defineWords.cubeWordsDictionary[side.name[0].ToString()].Contains(modifiedWordArray0[i].ToString()) &&
-                (NumberOfOccurencesInArr(modifiedWordArray0, modifiedWordArray0[i]) <
-                    NumberOfOccurencesInArr(defineWords.cubeWordsDictionary[side.name[0].ToString()].ToCharArray(), modifiedWordArray0[i])))
-            {
-                frontColor.material.color = Color.yellow;
+                Renderer frontColor = defineWords.frontTransforms[i].transform.Find("Front").GetComponent<Renderer>();
+                if (defineWords.cubeWordsDictionary[side.name[0].ToString()][i] == modifiedWordArray0[i])
+                {
+                    frontColor.material = green;
+                } else if (defineWords.cubeWordsDictionary[side.name[0].ToString()].Contains(modifiedWordArray0[i].ToString()) &&
+                    (NumberOfOccurencesInArr(modifiedWordArray0, modifiedWordArray0[i]) <
+                        NumberOfOccurencesInArr(defineWords.cubeWordsDictionary[side.name[0].ToString()].ToCharArray(), modifiedWordArray0[i])))
+                {
+                    frontColor.material = yellow;
+                }
+                else
+                {
+                    frontColor.material = grey;
+                }
             }
-            else
+            else if (c == 'B')
             {
-                frontColor.material.color = Color.grey;
+                Renderer backColor = defineWords.backTransforms[i].transform.Find("Back").GetComponent<Renderer>();
+                if (defineWords.cubeWordsDictionary[side.name[0].ToString()][i] == modifiedWordArray1[i])
+                {
+                    backColor.material = green;
+                } else if (defineWords.cubeWordsDictionary[side.name[0].ToString()].Contains(modifiedWordArray1[i].ToString()) &&
+                    (NumberOfOccurencesInArr(modifiedWordArray1, modifiedWordArray1[i]) <
+                        NumberOfOccurencesInArr(defineWords.cubeWordsDictionary[side.name[0].ToString()].ToCharArray(), modifiedWordArray1[i])))
+                {
+                    backColor.material = yellow;
+                }
+                else
+                {
+                    backColor.material = grey;
+                }
             }
-            Renderer backColor = defineWords.backTransforms[i].transform.Find("Back").GetComponent<Renderer>();
-            if (defineWords.cubeWordsDictionary[side.name[0].ToString()][i] == modifiedWordArray1[i])
+            else if (c == 'U')
             {
-                backColor.material.color = Color.green;
-            } else if (defineWords.cubeWordsDictionary[side.name[0].ToString()].Contains(modifiedWordArray1[i].ToString()) &&
-                (NumberOfOccurencesInArr(modifiedWordArray1, modifiedWordArray1[i]) <
-                    NumberOfOccurencesInArr(defineWords.cubeWordsDictionary[side.name[0].ToString()].ToCharArray(), modifiedWordArray1[i])))
-            {
-                backColor.material.color = Color.yellow;
+                Renderer upColor = defineWords.upTransforms[i].transform.Find("Up").GetComponent<Renderer>();
+                if (defineWords.cubeWordsDictionary[side.name[0].ToString()][i] == modifiedWordArray2[i])
+                {
+                    upColor.material = green;
+                } else if (defineWords.cubeWordsDictionary[side.name[0].ToString()].Contains(modifiedWordArray2[i].ToString()) &&
+                    (NumberOfOccurencesInArr(modifiedWordArray2, modifiedWordArray2[i]) <
+                        NumberOfOccurencesInArr(defineWords.cubeWordsDictionary[side.name[0].ToString()].ToCharArray(), modifiedWordArray2[i])))
+                {
+                    upColor.material = yellow;
+                }
+                else
+                {
+                    upColor.material = grey;
+                }
             }
-            else
+            else if (c == 'D')
             {
-                backColor.material.color = Color.grey;
+                Renderer downColor = defineWords.downTransforms[i].transform.Find("Down").GetComponent<Renderer>();
+                if (defineWords.cubeWordsDictionary[side.name[0].ToString()][i] == modifiedWordArray3[i])
+                {
+                    downColor.material = green;
+                } else if (defineWords.cubeWordsDictionary[side.name[0].ToString()].Contains(modifiedWordArray3[i].ToString()) &&
+                    (NumberOfOccurencesInArr(modifiedWordArray3, modifiedWordArray3[i]) <
+                        NumberOfOccurencesInArr(defineWords.cubeWordsDictionary[side.name[0].ToString()].ToCharArray(), modifiedWordArray3[i])))
+                {
+                    downColor.material = yellow;
+                }
+                else
+                {
+                    downColor.material = grey;
+                }
             }
-            Renderer upColor = defineWords.upTransforms[i].transform.Find("Up").GetComponent<Renderer>();
-            if (defineWords.cubeWordsDictionary[side.name[0].ToString()][i] == modifiedWordArray2[i])
+            else if (c == 'L')
             {
-                upColor.material.color = Color.green;
-            } else if (defineWords.cubeWordsDictionary[side.name[0].ToString()].Contains(modifiedWordArray2[i].ToString()) &&
-                (NumberOfOccurencesInArr(modifiedWordArray2, modifiedWordArray2[i]) <
-                    NumberOfOccurencesInArr(defineWords.cubeWordsDictionary[side.name[0].ToString()].ToCharArray(), modifiedWordArray2[i])))
-            {
-                upColor.material.color = Color.yellow;
+                Renderer leftColor = defineWords.leftTransforms[i].transform.Find("Left").GetComponent<Renderer>();
+                if (defineWords.cubeWordsDictionary[side.name[0].ToString()][i] == modifiedWordArray4[i])
+                {
+                    leftColor.material = green;
+                } else if (defineWords.cubeWordsDictionary[side.name[0].ToString()].Contains(modifiedWordArray4[i].ToString()) &&
+                    (NumberOfOccurencesInArr(modifiedWordArray4, modifiedWordArray4[i]) <
+                        NumberOfOccurencesInArr(defineWords.cubeWordsDictionary[side.name[0].ToString()].ToCharArray(), modifiedWordArray4[i])))
+                {
+                    leftColor.material = yellow;
+                }
+                else
+                {
+                    leftColor.material = grey;
+                }
             }
-            else
+            else if (c == 'R')
             {
-                upColor.material.color = Color.grey;
+                Renderer rightColor = defineWords.rightTransforms[i].transform.Find("Right").GetComponent<Renderer>();
+                if (defineWords.cubeWordsDictionary[side.name[0].ToString()][i] == modifiedWordArray5[i])
+                {
+                    rightColor.material = green;
+                } else if (defineWords.cubeWordsDictionary[side.name[0].ToString()].Contains(modifiedWordArray5[i].ToString()) &&
+                    (NumberOfOccurencesInArr(modifiedWordArray5, modifiedWordArray5[i]) <
+                        NumberOfOccurencesInArr(defineWords.cubeWordsDictionary[side.name[0].ToString()].ToCharArray(), modifiedWordArray5[i])))
+                {
+                    rightColor.material = yellow;
+                }
+                else
+                {
+                    rightColor.material = grey;
+                }
             }
-            Renderer downColor = defineWords.downTransforms[i].transform.Find("Down").GetComponent<Renderer>();
-            if (defineWords.cubeWordsDictionary[side.name[0].ToString()][i] == modifiedWordArray3[i])
-            {
-                downColor.material.color = Color.green;
-            } else if (defineWords.cubeWordsDictionary[side.name[0].ToString()].Contains(modifiedWordArray3[i].ToString()) &&
-                (NumberOfOccurencesInArr(modifiedWordArray3, modifiedWordArray3[i]) <
-                    NumberOfOccurencesInArr(defineWords.cubeWordsDictionary[side.name[0].ToString()].ToCharArray(), modifiedWordArray3[i])))
-            {
-                downColor.material.color = Color.yellow;
-            }
-            else
-            {
-                downColor.material.color = Color.grey;
-            }
-            Renderer leftColor = defineWords.leftTransforms[i].transform.Find("Left").GetComponent<Renderer>();
-            if (defineWords.cubeWordsDictionary[side.name[0].ToString()][i] == modifiedWordArray4[i])
-            {
-                leftColor.material.color = Color.green;
-            } else if (defineWords.cubeWordsDictionary[side.name[0].ToString()].Contains(modifiedWordArray4[i].ToString()) &&
-                (NumberOfOccurencesInArr(modifiedWordArray4, modifiedWordArray4[i]) <
-                    NumberOfOccurencesInArr(defineWords.cubeWordsDictionary[side.name[0].ToString()].ToCharArray(), modifiedWordArray4[i])))
-            {
-                leftColor.material.color = Color.yellow;
-            }
-            else
-            {
-                leftColor.material.color = Color.grey;
-            }
-            Renderer rightColor = defineWords.rightTransforms[i].transform.Find("Right").GetComponent<Renderer>();
-            if (defineWords.cubeWordsDictionary[side.name[0].ToString()][i] == modifiedWordArray5[i])
-            {
-                rightColor.material.color = Color.green;
-            } else if (defineWords.cubeWordsDictionary[side.name[0].ToString()].Contains(modifiedWordArray5[i].ToString()) &&
-                (NumberOfOccurencesInArr(modifiedWordArray5, modifiedWordArray5[i]) <
-                    NumberOfOccurencesInArr(defineWords.cubeWordsDictionary[side.name[0].ToString()].ToCharArray(), modifiedWordArray5[i])))
-            {
-                rightColor.material.color = Color.yellow;
-            }
-            else
-            {
-                rightColor.material.color = Color.grey;
-            }
+            
+            i++;
         }
     }
 }

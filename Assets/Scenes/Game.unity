@@ -58236,6 +58236,9 @@ MonoBehaviour:
   right: {fileID: 1375566791}
   front: {fileID: 1035734269}
   back: {fileID: 2009493319}
+  green: {fileID: 2100000, guid: e1ca29902cb7e184c9142bc7d53c72cc, type: 2}
+  yellow: {fileID: 2100000, guid: d1ff4406260bb5b4d83147a9ae6a4657, type: 2}
+  grey: {fileID: 2100000, guid: 7e802404628ba804cbe04456440f18be, type: 2}
 --- !u!1 &789560735
 GameObject:
   m_ObjectHideFlags: 0

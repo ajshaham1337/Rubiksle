@@ -8,11 +8,16 @@ public class SelectFace : MonoBehaviour
     ReadCube readCube;
     int layerMask = 1 << 8;
 
+    public CubeMap cubeMap;
+
+
     // Start is called before the first frame update
     void Start()
     {
         readCube = FindObjectOfType<ReadCube>();
         cubeState = FindObjectOfType<CubeState>();
+        cubeMap = FindObjectOfType<CubeMap>();
+        
     }
 
     // Update is called once per frame
@@ -54,6 +59,8 @@ public class SelectFace : MonoBehaviour
                     }
                 }
             }
+
+            cubeMap.Set();
         }
     }
 }

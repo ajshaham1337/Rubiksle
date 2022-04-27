@@ -14,12 +14,12 @@ public class RotateBigCube : MonoBehaviour
 
     float speed = 200f;
 
-
+    // public ReadCube readCube;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        // readCube = FindObjectOfType<ReadCube>();
     }
 
     // Update is called once per frame
